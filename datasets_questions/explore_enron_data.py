@@ -24,7 +24,7 @@ enron_data_1d is name of each person,enron_data_2d is features of each person"""
 
 ### length of enron_data_1d and name of each person
 print(len(enron_data))    
-print(enron_data.keys())    
+# print(enron_data.keys())    
 
 ### length of enron_data_2d and features of each person
 print(len(enron_data["METTS MARK"])) 
@@ -49,7 +49,7 @@ print (enron_data["LAY KENNETH L"]["total_payments"])    # enron chairman : Kenn
 print (enron_data["FASTOW ANDREW S"]["total_payments"])    # enron CFO : Andrew Fastow : 2424083
 
 ### all the features of one person
-print(enron_data["METTS MARK"])
+# print(enron_data["METTS MARK"])
 
 ### the number of folks in this dataset have a quantified salary number and know email address.
 person_quantified_salary = 0
@@ -62,4 +62,28 @@ for num in range(len(person_name)):
 		email_address = email_address + 1
 print ("the number of people who have a quantified salary number : %d"  % person_quantified_salary)
 print ("the number of people who have email address : %d"  % email_address)
+
+### the sum of peoples'total_payments equals to 'NaN' and their percentage in the whole dataset.
+number_total_payments = 0
+person_name = enron_data.keys()
+total_person_number = len(person_name)
+print ("total_person_number : %d"  % total_person_number)
+for num in range(len(person_name)):
+	if enron_data[person_name[num]]['total_payments'] == "NaN" :
+		number_total_payments = number_total_payments + 1
+print ("the number of people who have not been known total_payments : %d"  % number_total_payments)
+print ("percentage in the whole dataset : %d " % (number_total_payments*100/total_person_number))
+# format(float(number_total_payments)/float(total_person_number),'.5f')
+
+### the sum of POI'total_payments equals to 'NaN' and their percentage in the whole POI dataset.
+person_poi = 0
+number_nan_poi = 0
+person_name = enron_data.keys()
+for num in range(len(person_name)):
+	if enron_data[person_name[num]]['poi'] == 1 :
+		person_poi = person_poi+1
+		if enron_data[person_name[num]]['total_payments'] == "NaN" :
+			number_nan_poi = number_nan_poi + 1	
+print ("percentage in the whole POI dataset : %d " % (number_nan_poi*100/person_poi))
+print (number_nan_poi, person_poi )
 
