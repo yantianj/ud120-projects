@@ -43,3 +43,23 @@ print("the total value of the stock belonging to James Prentice is %d" % (enron_
 print("the number of emails from_this_person_to_poi is %d" % (enron_data["COLWELL WESLEY"]["from_this_person_to_poi"]))
 print("the value of exercised_stock_options belonging to Jeffrey Skilling is %d" % (enron_data["SKILLING JEFFREY K"]["exercised_stock_options"]))
 
+### whose total_payments is largest among Jeffrey Skilling,Kenneth Lay:max,Andrew Fastow
+print (enron_data["SKILLING JEFFREY K"]["total_payments"])    # enron CEO : Jeffrey Skilling : 8682716
+print (enron_data["LAY KENNETH L"]["total_payments"])    # enron chairman : Kenneth Lay : 103559793
+print (enron_data["FASTOW ANDREW S"]["total_payments"])    # enron CFO : Andrew Fastow : 2424083
+
+### all the features of one person
+print(enron_data["METTS MARK"])
+
+### the number of folks in this dataset have a quantified salary number and know email address.
+person_quantified_salary = 0
+email_address = 0
+person_name = enron_data.keys()
+for num in range(len(person_name)):
+	if type(enron_data[person_name[num]]['salary'] ) == int :
+		person_quantified_salary = person_quantified_salary + 1
+	if enron_data[person_name[num]]['email_address'] != "NaN" :
+		email_address = email_address + 1
+print ("the number of people who have a quantified salary number : %d"  % person_quantified_salary)
+print ("the number of people who have email address : %d"  % email_address)
+
