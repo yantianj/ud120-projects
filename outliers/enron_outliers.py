@@ -15,14 +15,16 @@ data = featureFormat(data_dict, features)
 
 ### your code below
 import numpy as np
-salarys =  featureFormat(data_dict, ["salary"])
-maxs = np.max(salarys)
-data_keys = data_dict.keys()
-data_length = len(data_keys)
-for num in range(1,data_length):
-	if data_dict[data_keys[num]]["salary"] == maxs :
-		print data_keys[num]
 
+for n in range(1,3):
+	salarys =  featureFormat(data_dict, ["salary"])
+	data_keys = data_dict.keys()
+	data_length = len(data_keys)
+	maxs = np.max(salarys)
+	for num in range(1,data_length):
+		if data_dict[data_keys[num]]["salary"] == maxs :
+			print data_keys[num]
+			del data_dict[data_keys[num]]
 """
 print(len(data_dict),len(data))    # (146, 95)
 import numpy as np
