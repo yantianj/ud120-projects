@@ -32,7 +32,7 @@ slope = reg.coef_
 print "slope :",slope
 testing_score = reg.score(ages_test, net_worths_test)
 print "testing score :", testing_score
-
+# print reg.predict(ages_train),ages_train, net_worths_train
 
 
 
@@ -69,6 +69,10 @@ if len(cleaned_data) > 0:
     try:
         reg.fit(ages, net_worths)
         plt.plot(ages, reg.predict(ages), color="blue")
+        slope = reg.coef_
+	print "new slope :",slope
+	testing_score = reg.score(ages_test, net_worths_test)
+	print "new testing score :", testing_score
     except NameError:
         print "you don't seem to have regression imported/created,"
         print "   or else your regression object isn't named reg"
