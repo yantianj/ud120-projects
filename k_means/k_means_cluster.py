@@ -49,11 +49,19 @@ max_data = max(exercised_stock_options)
 mini_data = min(exercised_stock_options)
 print "exercised_stock_options : " , max_data, mini_data
 
+### feature scaleing
+stock_scale = float(1000000-mini_data)/(max_data-mini_data)
+print "stock scale : " , stock_scale
+
 ### find the maximum and minimum data of salary
-exercised_stock_options = featureFormat(data_dict,["salary"])
-max_data = max(exercised_stock_options)
-mini_data = min(exercised_stock_options)
+salarys = featureFormat(data_dict,["salary"])
+max_data = max(salarys)
+mini_data = min(salarys)
 print "salary : " , max_data, mini_data
+
+### feature scaleing
+salarys_scale = float(200000-mini_data)/(max_data-mini_data)
+print "salary scale : " , salarys_scale
 
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
