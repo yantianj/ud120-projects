@@ -15,7 +15,7 @@ authors = pickle.load( open(authors_file, "r") )
 
 
 
-### test_size is the percentage of events assigned to the test set (the    python find_signature.py
+### test_size is the percentage of events assigned to the test set (the    
 ### remainder go into training)
 ### feature matrices changed to dense representations for compatibility with
 ### classifier functions in versions 0.15.2 and earlier
@@ -35,7 +35,7 @@ features_test  = vectorizer.transform(features_test).toarray()
 ### train on only 150 events to put ourselves in this regime
 features_train = features_train[:150].toarray()
 labels_train   = labels_train[:150]
-print features_train[2]
+# print features_train[2]
 
 
 ### your code goes here
@@ -46,7 +46,7 @@ pred = clf.predict(features_test)
 from sklearn.metrics import accuracy_score
 accuracy = accuracy_score(labels_test, pred)
 print(accuracy)
-### mycode:part2
+### mycode:part2  python find_signature.py
 print (clf.feature_importances_).shape
 importances = 0.
 nums = 0
@@ -54,7 +54,13 @@ for num, item in enumerate(clf.feature_importances_) :
 	if item > importances :
 		importances = item
                 nums = num
-print importances, nums, clf.feature_importances_[33709],
-print vectorizer.get_feature_names()[33709]
+print importances, nums, clf.feature_importances_[nums],
+### feature names
+print vectorizer.get_feature_names()[nums]
 
-
+### compute the number of abnormal point
+nums1 = 0
+for item in clf.feature_importances_ :
+	if item > 0.2 :
+                nums1 = nums1+1
+print nums1
