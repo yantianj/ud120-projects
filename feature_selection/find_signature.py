@@ -15,7 +15,7 @@ authors = pickle.load( open(authors_file, "r") )
 
 
 
-### test_size is the percentage of events assigned to the test set (the
+### test_size is the percentage of events assigned to the test set (the    python find_signature.py
 ### remainder go into training)
 ### feature matrices changed to dense representations for compatibility with
 ### classifier functions in versions 0.15.2 and earlier
@@ -29,12 +29,13 @@ features_train = vectorizer.fit_transform(features_train)
 features_test  = vectorizer.transform(features_test).toarray()
 
 
+
 ### a classic way to overfit is to use a small number
 ### of data points and a large number of features;
 ### train on only 150 events to put ourselves in this regime
 features_train = features_train[:150].toarray()
 labels_train   = labels_train[:150]
-
+print features_train[2]
 
 
 ### your code goes here
@@ -42,9 +43,18 @@ from sklearn import tree
 clf = tree.DecisionTreeClassifier(min_samples_split=40)
 clf.fit(features_train, labels_train)
 pred = clf.predict(features_test)
-
 from sklearn.metrics import accuracy_score
 accuracy = accuracy_score(labels_test, pred)
 print(accuracy)
+### mycode:part2
+print (clf.feature_importances_).shape
+importances = 0.
+nums = 0
+for num, item in enumerate(clf.feature_importances_) :
+	if item > importances :
+		importances = item
+                nums = num
+print importances, nums, clf.feature_importances_[33709],
+print vectorizer.get_feature_names()[33709]
 
 
